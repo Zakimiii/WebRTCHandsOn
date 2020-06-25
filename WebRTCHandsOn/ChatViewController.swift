@@ -34,7 +34,7 @@ RTCPeerConnectionDelegate, RTCEAGLVideoViewDelegate {
         
         startVideo()
         
-        websocket = WebSocket(url: URL(string: "wss://guarded-ravine-80526.herokuapp.com/tnoho")!)
+        websocket = WebSocket(url: URL(string: "ws://guarded-ravine-80526.herokuapp.com/WebRTCHandsOnSig/tnoho")!)
         websocket.delegate = self
         websocket.connect()
     }

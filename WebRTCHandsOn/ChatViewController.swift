@@ -12,7 +12,7 @@ import Starscream
 import SwiftyJSON
 
 class ChatViewController: UIViewController, WebSocketDelegate,
-                            RTCPeerConnectionDelegate, RTCEAGLVideoViewDelegate {
+RTCPeerConnectionDelegate, RTCEAGLVideoViewDelegate {
     var websocket: WebSocket! = nil
     
     var peerConnectionFactory: RTCPeerConnectionFactory! = nil
@@ -34,7 +34,7 @@ class ChatViewController: UIViewController, WebSocketDelegate,
         
         startVideo()
         
-        websocket = WebSocket(url: URL(string: "wss://conf.space/WebRTCHandsOnSig/tnoho")!)
+        websocket = WebSocket(url: URL(string: "wss://guarded-ravine-80526.herokuapp.com/tnoho")!)
         websocket.delegate = self
         websocket.connect()
     }
@@ -219,7 +219,13 @@ class ChatViewController: UIViewController, WebSocketDelegate,
         }
     }
     
-    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+    func websocketDidConnect(socket: WebSocketClient) {
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         LOG("message: \(text)")
         // 受け取ったメッセージをJSONとしてパース
         let jsonMessage = JSON.parse(text)
@@ -254,9 +260,9 @@ class ChatViewController: UIViewController, WebSocketDelegate,
         }
     }
     
-    func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        LOG("data.count: \(data.count)")
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
     }
+    
     
     func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {
         // 接続情報交換の状況が変化した際に呼ばれます

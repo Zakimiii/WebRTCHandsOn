@@ -6,7 +6,7 @@ target 'WebRTCHandsOn' do
   use_frameworks!
 
   # Pods for WebRTCHandsOn
-  pod 'WebRTC', '58.17.16937'
-  pod 'Starscream', '~> 2.0.3'
-  pod 'SwiftyJSON'
+  pod 'WebRTC', '63.11.20455'
+  pod 'Starscream', '3.0.0'
+  pod 'SwiftyJSON', '4.0.0'
 end
